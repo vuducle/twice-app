@@ -12,7 +12,7 @@ module.exports = app => {
 
     router.get("/:id", todos.findOne);
 
-    router.put("/id", todos.update);
+    router.put("/:id", todos.update);
 
     router.delete("/:id", todos.delete);
 
