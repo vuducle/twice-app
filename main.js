@@ -1,5 +1,5 @@
-const express = require("express")
-const cors = require("cors");
+import express, { json, urlencoded } from "express";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -10,9 +10,9 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use(express.json());
+app.use(json());
 require("./routes/Todo.js")(app);
-app.use(express.urlencoded({ extended: true }));
+app.use(urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
