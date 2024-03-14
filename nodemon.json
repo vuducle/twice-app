@@ -1,0 +1,6 @@
+{
+    "watch": ["models"],
+    "ext": ".ts,.js",
+    "ignore": [],
+    "exec": "bun ./main.js"
+}
