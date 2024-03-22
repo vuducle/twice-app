@@ -73,7 +73,7 @@ class Todos {
     static updateById(id, todo, result) {
         sql.query(
             "UPDATE Todos SET title = ?, completed = ? WHERE id = ?",
-            [todo.titel, todo.completed, id],
+            [todo.title, todo.completed, id],
             (err, res) => {
                 if (err) {
                     console.log("Error: ", err);

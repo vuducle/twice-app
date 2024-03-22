@@ -15,7 +15,7 @@ exports.create = (req, res) => {
     Todos.create(todos, (err, data) => {
         if (err) {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the Tutorial."
+                message: err.message || "Some error occurred while creating the Todos."
             });
         }
         else res.send(data);
@@ -29,7 +29,7 @@ exports.findAll = (req, res) => {
         if (err)
         res.status(500).send({
             message:
-            err.message || "Some error occurred while retrieving tutorials."
+            err.message || "Some error occurred while retrieving Todos."
         });
         else res.send(data);
     });
@@ -40,11 +40,11 @@ exports.findOne = (req, res) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Tutorial with id ${req.params.id}.`
+          message: `Not found Todos with id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Tutorial with id " + req.params.id
+          message: "Error retrieving Todo with id " + req.params.id
         });
       }
     } else res.send(data);
@@ -56,7 +56,7 @@ exports.getAllCompleted = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Some error occurred while retrieving Todos."
       });
     else res.send(data);
   });
@@ -73,7 +73,7 @@ exports.update = (req, res) => {
 
   Todos.updateById(
     req.params.id,
-    new Todo(req.body),
+    new Todos(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
@@ -111,7 +111,7 @@ exports.deleteAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all tutorials."
+          err.message || "Some error occurred while removing all Todos."
       });
     else res.send({ message: `All Todo were deleted successfully!` });
   });
