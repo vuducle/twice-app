@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function TodoList({ todosParameter }) {
+function TodoList({ }) {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
@@ -74,13 +74,14 @@ function TodoList({ todosParameter }) {
         <ul>
             {todos.map((todo) => (
             <li className="font-vietnam" key={todo.id}>
-                <span>{todo.title}</span>
                 <input
                 type="checkbox"
+                className='mr-2'
                 checked={todo.completed}
                 onChange={(e) => handleStatusChange(todo.id, e.target.checked)}
                 />
-                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                <span>{todo.title}</span>
+                <button className="bg-rose-500 hover:bg-rose-700 cursor-pointer py-2 px-1.5 rounded-md ml-2" onClick={() => deleteTodo(todo.id)}>🗑️</button>
             </li>
             ))}
         </ul>
