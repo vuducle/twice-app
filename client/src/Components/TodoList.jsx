@@ -6,7 +6,7 @@ function TodoList({ todosParameter }) {
     useEffect(() => {
         fetchTodos();
 
-        const interval = setInterval(fetchTodos, 5000);
+        const interval = setInterval(fetchTodos, 3000);
 
         return () => clearInterval(interval);
     }, []);
@@ -52,6 +52,23 @@ function TodoList({ todosParameter }) {
 
     };
 
+    const deleteTodo = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/todos/${id}`, {
+                method: "DELETE"
+            });
+        
+            if (!response.ok) {
+                throw new Error("Failed to delete todo");
+            }
+        
+            const updatedTodos = todos.filter(todo => todo.id !== id);
+            setTodos(updatedTodos);
+        } catch (error) {
+            console.error("Error deleting todo:", error);
+        }
+    }
+
     return (
         <>
         <ul>
@@ -63,6 +80,7 @@ function TodoList({ todosParameter }) {
                 checked={todo.completed}
                 onChange={(e) => handleStatusChange(todo.id, e.target.checked)}
                 />
+                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
             </li>
             ))}
         </ul>
